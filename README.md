@@ -22,4 +22,4 @@ As long as everything is configured correctly and the instance works, no errors 
 # License
 This project is licensed under the [GNU GPL Public License v3](https://www.gnu.org/licenses/gpl-3.0.html) license.
 
-###### <p align="center">[Check out my other works](https://github.com/AsuxAX?tab=repositories)</p>
+###### <p align="center">[Check out my other works](https://github.com/Asudox?tab=repositories)</p>
