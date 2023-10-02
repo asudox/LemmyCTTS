@@ -13,7 +13,7 @@ INSTANCE_URL = "instanceurl" # e.g. https://lemmy.world
 LEMMY_USERNAME = "username"
 LEMMY_PASSWORD = "password"
 LEMMY_TARGET_COMMUNITY = "asklemmy@lemmy.world" # Target Lemmy community. If community is not in the INSTANCE_URL instance, input community name as <community_name>@instance_url WITHOUT !
-COMMENT_LIMIT = 5 # max. 50
+COMMENT_LIMIT = 10 # max. 50
 COMMENT_CHARACTER_LIMIT = 1500
 SORT_TYPE = "Hot" # post sorting type
 
