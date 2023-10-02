@@ -1,11 +1,9 @@
-import random
 from lemmy import Lemmy
 from screenshotLemmy import screenshotLemmy
 from createLemmyVideo import createLemmyVideo
 from createTTS import createTTS
 from finalCleanup import cleanup
 from random import choice as rchoice
-from typing import List
 from typing import Dict
 from loguru import logger
 
