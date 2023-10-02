@@ -10,8 +10,8 @@ from typing import Dict
 from loguru import logger
 
 INSTANCE_URL = "https://lemmy.world"
-LEMMY_USERNAME = "multipurposebot"
-LEMMY_PASSWORD = "SxG3ITdr5!B4l3z1M@c@R%%LUeRWu77zuss##%*9C#!I0iMka8FZ8Y$"
+LEMMY_USERNAME = "username"
+LEMMY_PASSWORD = "password"
 LEMMY_TARGET_COMMUNITY = "asklemmy@lemmy.world" # Target Lemmy community. If community is not in the INSTANCE_URL instance, input community name as <community_name>@instance_url WITHOUT !
 COMMENT_LIMIT = 5 # max. 50
 COMMENT_CHARACTER_LIMIT = 1500
