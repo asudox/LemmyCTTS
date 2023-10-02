@@ -10,8 +10,6 @@ Before everything, install the required packages:
 pip install -r requirements.txt
 ```
 
-Then remove the .gitkeep files inside of the tts, video and screenshots folder as it will break the program
-
 After that, you should configure the settings (constants) inside main.py and also set your preferred browser of choice to take screenshots of the comments in screenshotLemmy.py
 
 Then run main.py
