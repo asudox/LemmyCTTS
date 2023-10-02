@@ -65,6 +65,8 @@ random_post_id = getRandomPostID(community_posts)
 top_comment_data = getTopCommentData(random_post_id)
 post_name = lemmy.post.get(id=random_post_id)["post_view"]["post"]["name"]
 
+logger.info("Cleaning up beforehand")
+cleanup()
 logger.info("Preparing to take screenshots")
 screenshotLemmy(INSTANCE_URL, random_post_id, top_comment_data.keys(), jwt)
 logger.info("Preparing to generate TTS files")
