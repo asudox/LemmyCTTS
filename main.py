@@ -1,21 +1,27 @@
-import random
 from lemmy import Lemmy
 from screenshotLemmy import screenshotLemmy
 from createLemmyVideo import createLemmyVideo
 from createTTS import createTTS
 from finalCleanup import cleanup
+from json import loads as json_loads
 from random import choice as rchoice
-from typing import List
 from typing import Dict
 from loguru import logger
 
-INSTANCE_URL = "https://lemmy.world"
-LEMMY_USERNAME = "multipurposebot"
-LEMMY_PASSWORD = "SxG3ITdr5!B4l3z1M@c@R%%LUeRWu77zuss##%*9C#!I0iMka8FZ8Y$"
-LEMMY_TARGET_COMMUNITY = "asklemmy@lemmy.world" # Target Lemmy community. If community is not in the INSTANCE_URL instance, input community name as <community_name>@instance_url WITHOUT !
-COMMENT_LIMIT = 5 # max. 50
-COMMENT_CHARACTER_LIMIT = 1500
-SORT_TYPE = "Hot" # post sorting type
+
+with open("config.json", "r") as f:
+    config = json_loads(f)
+
+# configure these in the config.json file!
+INSTANCE_URL = config["INSTANCE_URL"] # e.g. https://lemmy.world
+LEMMY_USERNAME = config["LEMMY_USERNAME"]
+LEMMY_PASSWORD = config["LEMMY_PASSWORD"]
+LEMMY_TARGET_COMMUNITY = config["LEMMY_TARGET_COMMUNITY"]
+COMMENT_LIMIT = config["COMMENT_LIMIT"] # max. 50
+COMMENT_CHARACTER_LIMIT = config["COMMENT_CHARACTER_LIMIT"]
+POST_SORT_TYPE = config["POST_SORT_TYPE"]
+COMMENT_SORT_TYPE = config["COMMENT_SORT_TYPE"]
+PREFERRED_BROWSER = config["PREFERRED_BROWSER"] # firefox, chrome, edge, safari
 
 lemmy = Lemmy(INSTANCE_URL)
 
@@ -27,7 +33,8 @@ else:
     exit()
 jwt = lemmy._auth.token
 
-def getRandomPostID(data: dict) -> str:
+def getRandomPostID() -> str:
+    data = lemmy.post.list(community_id=community_id, sort=POST_SORT_TYPE)
     logger.info("Getting a random post ID")
     post_ids = list()
     for post_data in data["posts"]:
@@ -60,13 +67,14 @@ def getTopCommentData(post_id: str) -> Dict[str, str]:
 logger.info(f"Discovering community: {LEMMY_TARGET_COMMUNITY}")
 community_id = lemmy.discover_community(LEMMY_TARGET_COMMUNITY)
 logger.info("Getting Lemmy posts from community")
-community_posts = lemmy.post.list(community_id=community_id, sort=SORT_TYPE)
-random_post_id = getRandomPostID(community_posts)
+random_post_id = getRandomPostID()
 top_comment_data = getTopCommentData(random_post_id)
 post_name = lemmy.post.get(id=random_post_id)["post_view"]["post"]["name"]
 
+logger.info("Cleaning up beforehand")
+cleanup()
 logger.info("Preparing to take screenshots")
-screenshotLemmy(INSTANCE_URL, random_post_id, top_comment_data.keys(), jwt)
+screenshotLemmy(INSTANCE_URL, random_post_id, top_comment_data.keys(), jwt, PREFERRED_BROWSER)
 logger.info("Preparing to generate TTS files")
 createTTS(top_comment_data, post_name)
 logger.info("Preparing to create the video. This might take several minutes")
