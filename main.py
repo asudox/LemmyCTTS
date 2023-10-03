@@ -10,7 +10,7 @@ from loguru import logger
 
 
 with open("config.json", "r") as f:
-    config = json_loads(f)
+    config = json_loads(f.read())
 
 # configure these in the config.json file!
 INSTANCE_URL = config["INSTANCE_URL"] # e.g. https://lemmy.world

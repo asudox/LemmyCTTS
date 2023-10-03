@@ -1,8 +1,10 @@
 # LemmyCTTS
 
-LemmyCTTS is a program to automatically convert Lemmy comments into a video. This project is inspired by the Reddit equivalent.
+LemmyCTTS is a program to automatically convert Lemmy comments into a video. This project is inspired by the Reddit equivalent version of this program.
 
 # Usage
+###### If you don't have Python installed, install it from here: https://www.python.org/downloads/
+
 Before everything, install the required packages:
 ```
 pip install -r requirements.txt
@@ -20,4 +22,4 @@ As long as everything is configured correctly and the instance works, no errors 
 # License
 This project is licensed under the [GNU GPL Public License v3](https://www.gnu.org/licenses/gpl-3.0.html) license.
 
-###### <p align="center">[Check out my other works](https://github.com/AsuxAX?tab=repositories)</p>
+###### <p align="center">[Check out my other works](https://github.com/Asudox?tab=repositories)</p>
